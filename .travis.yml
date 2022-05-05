@@ -1,19 +1,24 @@
 sudo: required
+language: generic
+
 services:
   - docker
-
 
 before_install:
   - docker build -t lchimeddorj22/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run lchimeddorj22/react-test npm test -- --coverage
-
+  - docker run -e CI=true lchimeddorj22/react-test npm test
 
 after_success:
   - docker build -t lchimeddorj22/multi-client ./client
   - docker build -t lchimeddorj22/multi-nginx ./nginx
   - docker build -t lchimeddorj22/multi-server ./server
   - docker build -t lchimeddorj22/multi-worker ./worker
-
+  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push lchimeddorj22/multi-client
+  - docker push lchimeddorj22/multi-nginx
+  - docker push lchimeddorj22/multi-server
+  - docker push lchimeddorj22/multi-worker
