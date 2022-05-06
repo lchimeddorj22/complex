@@ -24,15 +24,15 @@ after_success:
   - docker push lchimeddorj22/multi-worker
 deploy:
   provider: elasticbeanstalk
-  region: us-west-1
-  app: complex
-  env: Complex-env
-  bucket_name: elasticbeanstalk-us-west-1-309139970602
-  bucket_path: docker_multi
+  region: 'us-west-1'
+  app: 'complex'
+  env: 'Complex-env'
+  bucket_name: 'elasticbeanstalk-us-west-1-309139970602'
+  bucket_path: 'docker_multi'
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
     secure: $AWS_SECRET_KEY
-    
+
 
