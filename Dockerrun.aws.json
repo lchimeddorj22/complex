@@ -1,5 +1,9 @@
 {
-	"AWSEBDockerrunVersion": 3,
+	"AWSEBDockerrunVersion": "2",
+    "Authentication": {
+        "bucket": "DOC-EXAMPLE-BUCKET",
+        "key": "mydockercfg"
+      },
 	"containerDefinitions": [{
 			"name": "client",
 			"image": "lchimeddorj22/multi-client",
